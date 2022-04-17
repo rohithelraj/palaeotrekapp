@@ -91,6 +91,7 @@
     "bootswatch": "5.1.3",
     "dayjs": "1.11.0",
     "ng2-pdf-viewer": "^9.0.0",
+    "ngx-extended-pdf-viewer": "^13.0.0-alpha.12",
     "ngx-infinite-scroll": "13.0.1",
     "ngx-webstorage": "9.0.0",
     "rxjs": "7.5.5",

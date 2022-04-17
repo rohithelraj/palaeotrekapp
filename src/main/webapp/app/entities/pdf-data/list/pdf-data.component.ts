@@ -9,6 +9,7 @@ import { IPdfData } from '../pdf-data.model';
 import { ASC, DESC, ITEMS_PER_PAGE, SORT } from 'app/config/pagination.constants';
 import { PdfDataService } from '../service/pdf-data.service';
 import { PdfDataDeleteDialogComponent } from '../delete/pdf-data-delete-dialog.component';
+import { DataUtils } from 'app/core/util/data-util.service';
 
 @Component({
   selector: 'jhi-pdf-data',
@@ -27,6 +28,7 @@ export class PdfDataComponent implements OnInit {
   constructor(
     protected pdfDataService: PdfDataService,
     protected activatedRoute: ActivatedRoute,
+    protected dataUtils: DataUtils,
     protected router: Router,
     protected modalService: NgbModal
   ) {}
@@ -59,6 +61,14 @@ export class PdfDataComponent implements OnInit {
 
   trackId(_index: number, item: IPdfData): number {
     return item.id!;
+  }
+
+  byteSize(base64String: string): string {
+    return this.dataUtils.byteSize(base64String);
+  }
+
+  openFile(base64String: string, contentType: string | null | undefined): void {
+    return this.dataUtils.openFile(base64String, contentType);
   }
 
   delete(pdfData: IPdfData): void {

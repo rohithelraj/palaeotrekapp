@@ -32,6 +32,8 @@ describe('PdfData Service', () => {
       pdfId: 'AAAAAAA',
       dateOfCreation: currentDate,
       userId: 'AAAAAAA',
+      pdfContentType: 'image/png',
+      pdf: 'AAAAAAA',
     };
   });
 
@@ -83,6 +85,7 @@ describe('PdfData Service', () => {
           pdfId: 'BBBBBB',
           dateOfCreation: currentDate.format(DATE_FORMAT),
           userId: 'BBBBBB',
+          pdf: 'BBBBBB',
         },
         elemDefault
       );
@@ -135,6 +138,7 @@ describe('PdfData Service', () => {
           pdfId: 'BBBBBB',
           dateOfCreation: currentDate.format(DATE_FORMAT),
           userId: 'BBBBBB',
+          pdf: 'BBBBBB',
         },
         elemDefault
       );
@@ -191,7 +195,7 @@ describe('PdfData Service', () => {
       });
 
       it('should add only unique PdfData to an array', () => {
-        const pdfDataArray: IPdfData[] = [{ id: 123 }, { id: 456 }, { id: 38479 }];
+        const pdfDataArray: IPdfData[] = [{ id: 123 }, { id: 456 }, { id: 58110 }];
         const pdfDataCollection: IPdfData[] = [{ id: 123 }];
         expectedResult = service.addPdfDataToCollectionIfMissing(pdfDataCollection, ...pdfDataArray);
         expect(expectedResult).toHaveLength(3);

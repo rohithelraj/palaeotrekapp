@@ -96,6 +96,7 @@ module.exports = async (config, options, targetOptions) => {
       from: require.resolve('axios/dist/axios.min.js'),
       to: 'swagger-ui/',
     },
+    { from: "./node_modules/ngx-extended-pdf-viewer/assets", to: 'assets' },
     { from: './src/main/webapp/swagger-ui/', to: 'swagger-ui/' },
     // jhipster-needle-add-assets-to-webpack - JHipster will add/remove third-party resources in this array
   ];

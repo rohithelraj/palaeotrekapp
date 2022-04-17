@@ -5,6 +5,7 @@ import com.elraj.palaeotrek.domain.enumeration.DnaType;
 import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.Objects;
+import javax.persistence.Lob;
 import javax.validation.constraints.*;
 
 /**
@@ -28,6 +29,11 @@ public class PdfDataDTO implements Serializable {
 
     @NotNull
     private String userId;
+
+    @Lob
+    private byte[] pdf;
+
+    private String pdfContentType;
 
     public Long getId() {
         return id;
@@ -77,6 +83,22 @@ public class PdfDataDTO implements Serializable {
         this.userId = userId;
     }
 
+    public byte[] getPdf() {
+        return pdf;
+    }
+
+    public void setPdf(byte[] pdf) {
+        this.pdf = pdf;
+    }
+
+    public String getPdfContentType() {
+        return pdfContentType;
+    }
+
+    public void setPdfContentType(String pdfContentType) {
+        this.pdfContentType = pdfContentType;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) {
@@ -108,6 +130,7 @@ public class PdfDataDTO implements Serializable {
             ", pdfId='" + getPdfId() + "'" +
             ", dateOfCreation='" + getDateOfCreation() + "'" +
             ", userId='" + getUserId() + "'" +
+            ", pdf='" + getPdf() + "'" +
             "}";
     }
 }

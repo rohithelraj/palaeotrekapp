@@ -26,6 +26,7 @@ import org.springframework.http.MediaType;
 import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.util.Base64Utils;
 
 /**
  * Integration tests for the {@link PdfDataResource} REST controller.
@@ -49,6 +50,11 @@ class PdfDataResourceIT {
 
     private static final String DEFAULT_USER_ID = "AAAAAAAAAA";
     private static final String UPDATED_USER_ID = "BBBBBBBBBB";
+
+    private static final byte[] DEFAULT_PDF = TestUtil.createByteArray(1, "0");
+    private static final byte[] UPDATED_PDF = TestUtil.createByteArray(1, "1");
+    private static final String DEFAULT_PDF_CONTENT_TYPE = "image/jpg";
+    private static final String UPDATED_PDF_CONTENT_TYPE = "image/png";
 
     private static final String ENTITY_API_URL = "/api/pdf-data";
     private static final String ENTITY_API_URL_ID = ENTITY_API_URL + "/{id}";
@@ -82,7 +88,9 @@ class PdfDataResourceIT {
             .detailedType(DEFAULT_DETAILED_TYPE)
             .pdfId(DEFAULT_PDF_ID)
             .dateOfCreation(DEFAULT_DATE_OF_CREATION)
-            .userId(DEFAULT_USER_ID);
+            .userId(DEFAULT_USER_ID)
+            .pdf(DEFAULT_PDF)
+            .pdfContentType(DEFAULT_PDF_CONTENT_TYPE);
         return pdfData;
     }
 
@@ -98,7 +106,9 @@ class PdfDataResourceIT {
             .detailedType(UPDATED_DETAILED_TYPE)
             .pdfId(UPDATED_PDF_ID)
             .dateOfCreation(UPDATED_DATE_OF_CREATION)
-            .userId(UPDATED_USER_ID);
+            .userId(UPDATED_USER_ID)
+            .pdf(UPDATED_PDF)
+            .pdfContentType(UPDATED_PDF_CONTENT_TYPE);
         return pdfData;
     }
 
@@ -126,6 +136,8 @@ class PdfDataResourceIT {
         assertThat(testPdfData.getPdfId()).isEqualTo(DEFAULT_PDF_ID);
         assertThat(testPdfData.getDateOfCreation()).isEqualTo(DEFAULT_DATE_OF_CREATION);
         assertThat(testPdfData.getUserId()).isEqualTo(DEFAULT_USER_ID);
+        assertThat(testPdfData.getPdf()).isEqualTo(DEFAULT_PDF);
+        assertThat(testPdfData.getPdfContentType()).isEqualTo(DEFAULT_PDF_CONTENT_TYPE);
     }
 
     @Test
@@ -253,7 +265,9 @@ class PdfDataResourceIT {
             .andExpect(jsonPath("$.[*].detailedType").value(hasItem(DEFAULT_DETAILED_TYPE.toString())))
             .andExpect(jsonPath("$.[*].pdfId").value(hasItem(DEFAULT_PDF_ID)))
             .andExpect(jsonPath("$.[*].dateOfCreation").value(hasItem(DEFAULT_DATE_OF_CREATION.toString())))
-            .andExpect(jsonPath("$.[*].userId").value(hasItem(DEFAULT_USER_ID)));
+            .andExpect(jsonPath("$.[*].userId").value(hasItem(DEFAULT_USER_ID)))
+            .andExpect(jsonPath("$.[*].pdfContentType").value(hasItem(DEFAULT_PDF_CONTENT_TYPE)))
+            .andExpect(jsonPath("$.[*].pdf").value(hasItem(Base64Utils.encodeToString(DEFAULT_PDF))));
     }
 
     @Test
@@ -272,7 +286,9 @@ class PdfDataResourceIT {
             .andExpect(jsonPath("$.detailedType").value(DEFAULT_DETAILED_TYPE.toString()))
             .andExpect(jsonPath("$.pdfId").value(DEFAULT_PDF_ID))
             .andExpect(jsonPath("$.dateOfCreation").value(DEFAULT_DATE_OF_CREATION.toString()))
-            .andExpect(jsonPath("$.userId").value(DEFAULT_USER_ID));
+            .andExpect(jsonPath("$.userId").value(DEFAULT_USER_ID))
+            .andExpect(jsonPath("$.pdfContentType").value(DEFAULT_PDF_CONTENT_TYPE))
+            .andExpect(jsonPath("$.pdf").value(Base64Utils.encodeToString(DEFAULT_PDF)));
     }
 
     @Test
@@ -299,7 +315,9 @@ class PdfDataResourceIT {
             .detailedType(UPDATED_DETAILED_TYPE)
             .pdfId(UPDATED_PDF_ID)
             .dateOfCreation(UPDATED_DATE_OF_CREATION)
-            .userId(UPDATED_USER_ID);
+            .userId(UPDATED_USER_ID)
+            .pdf(UPDATED_PDF)
+            .pdfContentType(UPDATED_PDF_CONTENT_TYPE);
         PdfDataDTO pdfDataDTO = pdfDataMapper.toDto(updatedPdfData);
 
         restPdfDataMockMvc
@@ -319,6 +337,8 @@ class PdfDataResourceIT {
         assertThat(testPdfData.getPdfId()).isEqualTo(UPDATED_PDF_ID);
         assertThat(testPdfData.getDateOfCreation()).isEqualTo(UPDATED_DATE_OF_CREATION);
         assertThat(testPdfData.getUserId()).isEqualTo(UPDATED_USER_ID);
+        assertThat(testPdfData.getPdf()).isEqualTo(UPDATED_PDF);
+        assertThat(testPdfData.getPdfContentType()).isEqualTo(UPDATED_PDF_CONTENT_TYPE);
     }
 
     @Test
@@ -417,6 +437,8 @@ class PdfDataResourceIT {
         assertThat(testPdfData.getPdfId()).isEqualTo(UPDATED_PDF_ID);
         assertThat(testPdfData.getDateOfCreation()).isEqualTo(DEFAULT_DATE_OF_CREATION);
         assertThat(testPdfData.getUserId()).isEqualTo(DEFAULT_USER_ID);
+        assertThat(testPdfData.getPdf()).isEqualTo(DEFAULT_PDF);
+        assertThat(testPdfData.getPdfContentType()).isEqualTo(DEFAULT_PDF_CONTENT_TYPE);
     }
 
     @Test
@@ -436,7 +458,9 @@ class PdfDataResourceIT {
             .detailedType(UPDATED_DETAILED_TYPE)
             .pdfId(UPDATED_PDF_ID)
             .dateOfCreation(UPDATED_DATE_OF_CREATION)
-            .userId(UPDATED_USER_ID);
+            .userId(UPDATED_USER_ID)
+            .pdf(UPDATED_PDF)
+            .pdfContentType(UPDATED_PDF_CONTENT_TYPE);
 
         restPdfDataMockMvc
             .perform(
@@ -455,6 +479,8 @@ class PdfDataResourceIT {
         assertThat(testPdfData.getPdfId()).isEqualTo(UPDATED_PDF_ID);
         assertThat(testPdfData.getDateOfCreation()).isEqualTo(UPDATED_DATE_OF_CREATION);
         assertThat(testPdfData.getUserId()).isEqualTo(UPDATED_USER_ID);
+        assertThat(testPdfData.getPdf()).isEqualTo(UPDATED_PDF);
+        assertThat(testPdfData.getPdfContentType()).isEqualTo(UPDATED_PDF_CONTENT_TYPE);
     }
 
     @Test

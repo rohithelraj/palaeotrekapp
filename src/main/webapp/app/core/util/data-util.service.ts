@@ -45,7 +45,21 @@ export class DataUtils {
       URL.revokeObjectURL(fileURL);
     };
   }
+  retrieveUrl(data: string, contentType: string | null | undefined): Blob {
+    contentType = contentType ?? '';
 
+    const byteCharacters = atob(data);
+    const byteNumbers = new Array(byteCharacters.length);
+    for (let i = 0; i < byteCharacters.length; i++) {
+      byteNumbers[i] = byteCharacters.charCodeAt(i);
+    }
+    const byteArray = new Uint8Array(byteNumbers);
+    const blob = new Blob([byteArray], {
+      type: contentType,
+    });
+    return blob;
+
+  }
   /**
    * Sets the base 64 data & file type of the 1st file on the event (event.target.files[0]) in the passed entity object
    * and returns an observable.

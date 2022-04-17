@@ -9,6 +9,8 @@ export interface IPdfData {
   pdfId?: string;
   dateOfCreation?: dayjs.Dayjs;
   userId?: string;
+  pdfContentType?: string | null;
+  pdf?: string | null;
 }
 
 export class PdfData implements IPdfData {
@@ -18,7 +20,9 @@ export class PdfData implements IPdfData {
     public detailedType?: DetailedType,
     public pdfId?: string,
     public dateOfCreation?: dayjs.Dayjs,
-    public userId?: string
+    public userId?: string,
+    public pdfContentType?: string | null,
+    public pdf?: string | null
   ) {}
 }
 

@@ -43,6 +43,13 @@ public class PdfData implements Serializable {
     @Column(name = "user_id", nullable = false)
     private String userId;
 
+    @Lob
+    @Column(name = "pdf")
+    private byte[] pdf;
+
+    @Column(name = "pdf_content_type")
+    private String pdfContentType;
+
     // jhipster-needle-entity-add-field - JHipster will add fields here
 
     public Long getId() {
@@ -123,6 +130,32 @@ public class PdfData implements Serializable {
         this.userId = userId;
     }
 
+    public byte[] getPdf() {
+        return this.pdf;
+    }
+
+    public PdfData pdf(byte[] pdf) {
+        this.setPdf(pdf);
+        return this;
+    }
+
+    public void setPdf(byte[] pdf) {
+        this.pdf = pdf;
+    }
+
+    public String getPdfContentType() {
+        return this.pdfContentType;
+    }
+
+    public PdfData pdfContentType(String pdfContentType) {
+        this.pdfContentType = pdfContentType;
+        return this;
+    }
+
+    public void setPdfContentType(String pdfContentType) {
+        this.pdfContentType = pdfContentType;
+    }
+
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here
 
     @Override
@@ -152,6 +185,8 @@ public class PdfData implements Serializable {
             ", pdfId='" + getPdfId() + "'" +
             ", dateOfCreation='" + getDateOfCreation() + "'" +
             ", userId='" + getUserId() + "'" +
+            ", pdf='" + getPdf() + "'" +
+            ", pdfContentType='" + getPdfContentType() + "'" +
             "}";
     }
 }

@@ -22,7 +22,8 @@
       "detailedType": "Detailed Type",
       "pdfId": "Pdf Id",
       "dateOfCreation": "Date Of Creation",
-      "userId": "User Id"
+      "userId": "User Id",
+      "pdf": "Pdf"
     }
   }
 }

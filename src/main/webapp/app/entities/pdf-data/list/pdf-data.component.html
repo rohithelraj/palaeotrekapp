@@ -48,6 +48,7 @@
           <th scope="col" jhiSortBy="userId">
             <span jhiTranslate="palaeotrekappApp.pdfData.userId">User Id</span> <fa-icon icon="sort"></fa-icon>
           </th>
+          <th scope="col" jhiSortBy="pdf"><span jhiTranslate="palaeotrekappApp.pdfData.pdf">Pdf</span> <fa-icon icon="sort"></fa-icon></th>
           <th scope="col"></th>
         </tr>
       </thead>
@@ -61,6 +62,10 @@
           <td>{{ pdfData.pdfId }}</td>
           <td>{{ pdfData.dateOfCreation | formatMediumDate }}</td>
           <td>{{ pdfData.userId }}</td>
+          <td>
+            <a *ngIf="pdfData.pdf" (click)="openFile(pdfData.pdf, pdfData.pdfContentType)" jhiTranslate="entity.action.open">open</a>
+            <span *ngIf="pdfData.pdf">{{ pdfData.pdfContentType }}, {{ byteSize(pdfData.pdf) }}</span>
+          </td>
           <td class="text-end">
             <div class="btn-group">
               <button

@@ -34,6 +34,19 @@
         <dd>
           <span>{{ pdfData.userId }}</span>
         </dd>
+        <dt><span jhiTranslate="palaeotrekappApp.pdfData.pdf">Pdf Info</span></dt>
+        <dd>
+          <div *ngIf="pdfData.pdf">
+            <a (click)="usePreloadedFile(pdfData.pdf, pdfData.pdfContentType)" jhiTranslate="entity.action.open">open</a>
+            {{ pdfData.pdfContentType }}, {{ byteSize(pdfData.pdf) }}
+          </div>
+        </dd>
+        <dt><span>Pdf</span></dt>
+        <dd>
+          <div *ngIf="pdfData.pdf">
+            <ngx-extended-pdf-viewer [src]="src" [useBrowserLocale]="true"></ngx-extended-pdf-viewer>
+          </div>
+        </dd>
       </dl>
 
       <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">

@@ -28,6 +28,11 @@
       "fieldName": "userId",
       "fieldType": "String",
       "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "pdf",
+      "fieldType": "byte[]",
+      "fieldTypeBlobContent": "any"
     }
   ],
   "jpaMetamodelFiltering": false,

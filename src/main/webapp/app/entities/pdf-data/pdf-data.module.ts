@@ -5,9 +5,10 @@ import { PdfDataDetailComponent } from './detail/pdf-data-detail.component';
 import { PdfDataUpdateComponent } from './update/pdf-data-update.component';
 import { PdfDataDeleteDialogComponent } from './delete/pdf-data-delete-dialog.component';
 import { PdfDataRoutingModule } from './route/pdf-data-routing.module';
+import {NgxExtendedPdfViewerModule} from "ngx-extended-pdf-viewer";
 
 @NgModule({
-  imports: [SharedModule, PdfDataRoutingModule],
+  imports: [SharedModule, PdfDataRoutingModule,NgxExtendedPdfViewerModule],
   declarations: [PdfDataComponent, PdfDataDetailComponent, PdfDataUpdateComponent, PdfDataDeleteDialogComponent],
   entryComponents: [PdfDataDeleteDialogComponent],
 })
