@@ -1,0 +1,20 @@
+<div>
+  <img class="autosomal" src="autosomaldna.png"/>
+  <button type="button" class="btn btn-primary position-relative" disabled>
+    Autosomal DNA History
+  </button>
+
+    <nav>
+      <div class="nav nav-tabs" id="nav-tab" role="tablist">
+        <button class="nav-link active" id="nav-maps-tab" data-bs-toggle="tab" data-bs-target="#nav-maps" type="button" role="tab" aria-controls="nav-maps" aria-selected="true" (click)="toggleTab('maps')" #navmapstab>Maps</button>
+        <button class="nav-link" id="nav-temperature-tab" data-bs-toggle="tab" data-bs-target="#nav-temperature" type="button" role="tab" aria-controls="nav-temperature" aria-selected="false" (click)="toggleTab('temperature')" #navtemperaturetab>Temperature Data</button>
+        <button class="nav-link" id="nav-additional-tab" data-bs-toggle="tab" data-bs-target="#nav-additional" type="button" role="tab" aria-controls="nav-additional" aria-selected="false" (click)="toggleTab('additional')" #navadditionaltab>Additional Information</button>
+      </div>
+    </nav>
+    <div class="tab-content" id="nav-tabContent">
+      <div class="tab-pane fade show active" id="nav-maps" role="tabpanel" aria-labelledby="nav-maps" #mapscontainer><jhi-autosomal-maps></jhi-autosomal-maps></div>
+      <div class="tab-pane fade" id="nav-temperature" role="tabpanel" aria-labelledby="nav-temperature"#temperaturecontainer><jhi-autosomal-temperature></jhi-autosomal-temperature></div>
+      <div class="tab-pane fade" id="nav-additional" role="tabpanel" aria-labelledby="nav-additional"#additionalcontainer><jhi-autosomal-additional></jhi-autosomal-additional></div>
+    </div>
+
+</div>

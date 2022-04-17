@@ -7,11 +7,20 @@ import { DEBUG_INFO_ENABLED } from 'app/app.constants';
 import { Authority } from 'app/config/authority.constants';
 
 import { UserRouteAccessService } from 'app/core/auth/user-route-access.service';
+import {AutosomaldnaComponent} from "./autosomaldna/autosomaldna.component";
+import {MtdnaComponent} from "./mtdna/mtdna.component";
+import {XdnaComponent} from "./xdna/xdna.component";
+import {YdnaComponent} from "./ydna/ydna.component";
 
 @NgModule({
   imports: [
     RouterModule.forRoot(
       [
+        { path: 'autosomal', component: AutosomaldnaComponent },
+        { path: 'mtdna', component: MtdnaComponent },
+        { path: 'xdna', component: XdnaComponent },
+        { path: 'ydna', component: YdnaComponent },
+
         {
           path: 'admin',
           data: {

@@ -9,13 +9,46 @@ Main page styles
   background: url('../../content/images/jhipster_family_member_3.svg') no-repeat center top;
   background-size: contain;
 }
+.autosomal{
+  display: inline-block;
+  width: 10em;
+  height: 10em;
+  background: url('../../autosomaldna.png') no-repeat;
+  background-size: contain;
+}
+.ydna{
+  display: inline-block;
+  width: 10em;
+  height: 10em;
+  background: url('../../ydna.png') no-repeat;
+  background-size: contain;
+}
+.mtdna{
+  display: inline-block;
+  width: 10em;
+  height: 10em;
+  background: url('../../mtdna.png') no-repeat;
+  background-size: contain;
 
+}
+.xdna{
+  display: inline-block;
+  width: 10em;
+  height: 10em;
+  background: url('../../xdna.png') no-repeat;
+  background-size: contain;
+
+}
+.cardmargin{
+  margin: 1em 1em 1em 1em;
+  width: 18rem;
+}
 /* wait autoprefixer update to allow simple generation of high pixel density media query */
 @media only screen and (-webkit-min-device-pixel-ratio: 2),
-  only screen and (-moz-min-device-pixel-ratio: 2),
-  only screen and (-o-min-device-pixel-ratio: 2/1),
-  only screen and (min-resolution: 192dpi),
-  only screen and (min-resolution: 2dppx) {
+only screen and (-moz-min-device-pixel-ratio: 2),
+only screen and (-o-min-device-pixel-ratio: 2/1),
+only screen and (min-resolution: 192dpi),
+only screen and (min-resolution: 2dppx) {
   .hipster {
     background: url('../../content/images/jhipster_family_member_3.svg') no-repeat center top;
     background-size: contain;
