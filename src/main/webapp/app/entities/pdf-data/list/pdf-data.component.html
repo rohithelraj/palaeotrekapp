@@ -1,0 +1,114 @@
+<div>
+  <h2 id="page-heading" data-cy="PdfDataHeading">
+    <span jhiTranslate="palaeotrekappApp.pdfData.home.title">Pdf Data</span>
+
+    <div class="d-flex justify-content-end">
+      <button class="btn btn-info me-2" (click)="loadPage()" [disabled]="isLoading">
+        <fa-icon icon="sync" [spin]="isLoading"></fa-icon>
+        <span jhiTranslate="palaeotrekappApp.pdfData.home.refreshListLabel">Refresh List</span>
+      </button>
+
+      <button
+        id="jh-create-entity"
+        data-cy="entityCreateButton"
+        class="btn btn-primary jh-create-entity create-pdf-data"
+        [routerLink]="['/pdf-data/new']"
+      >
+        <fa-icon icon="plus"></fa-icon>
+        <span jhiTranslate="palaeotrekappApp.pdfData.home.createLabel"> Create a new Pdf Data </span>
+      </button>
+    </div>
+  </h2>
+
+  <jhi-alert-error></jhi-alert-error>
+
+  <jhi-alert></jhi-alert>
+
+  <div class="alert alert-warning" id="no-result" *ngIf="pdfData?.length === 0">
+    <span jhiTranslate="palaeotrekappApp.pdfData.home.notFound">No pdfData found</span>
+  </div>
+
+  <div class="table-responsive" id="entities" *ngIf="pdfData && pdfData.length > 0">
+    <table class="table table-striped" aria-describedby="page-heading">
+      <thead>
+        <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" (sortChange)="loadPage()">
+          <th scope="col" jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <fa-icon icon="sort"></fa-icon></th>
+          <th scope="col" jhiSortBy="dnaType">
+            <span jhiTranslate="palaeotrekappApp.pdfData.dnaType">Dna Type</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="detailedType">
+            <span jhiTranslate="palaeotrekappApp.pdfData.detailedType">Detailed Type</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="pdfId">
+            <span jhiTranslate="palaeotrekappApp.pdfData.pdfId">Pdf Id</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="dateOfCreation">
+            <span jhiTranslate="palaeotrekappApp.pdfData.dateOfCreation">Date Of Creation</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="userId">
+            <span jhiTranslate="palaeotrekappApp.pdfData.userId">User Id</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let pdfData of pdfData; trackBy: trackId" data-cy="entityTable">
+          <td>
+            <a [routerLink]="['/pdf-data', pdfData.id, 'view']">{{ pdfData.id }}</a>
+          </td>
+          <td jhiTranslate="{{ 'palaeotrekappApp.DnaType.' + pdfData.dnaType }}">{{ pdfData.dnaType }}</td>
+          <td jhiTranslate="{{ 'palaeotrekappApp.DetailedType.' + pdfData.detailedType }}">{{ pdfData.detailedType }}</td>
+          <td>{{ pdfData.pdfId }}</td>
+          <td>{{ pdfData.dateOfCreation | formatMediumDate }}</td>
+          <td>{{ pdfData.userId }}</td>
+          <td class="text-end">
+            <div class="btn-group">
+              <button
+                type="submit"
+                [routerLink]="['/pdf-data', pdfData.id, 'view']"
+                class="btn btn-info btn-sm"
+                data-cy="entityDetailsButton"
+              >
+                <fa-icon icon="eye"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+              </button>
+
+              <button
+                type="submit"
+                [routerLink]="['/pdf-data', pdfData.id, 'edit']"
+                class="btn btn-primary btn-sm"
+                data-cy="entityEditButton"
+              >
+                <fa-icon icon="pencil-alt"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+              </button>
+
+              <button type="submit" (click)="delete(pdfData)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
+                <fa-icon icon="times"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+              </button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div *ngIf="pdfData && pdfData.length > 0">
+    <div class="d-flex justify-content-center">
+      <jhi-item-count [params]="{ page: page, totalItems: totalItems, itemsPerPage: itemsPerPage }"></jhi-item-count>
+    </div>
+
+    <div class="d-flex justify-content-center">
+      <ngb-pagination
+        [collectionSize]="totalItems"
+        [(page)]="ngbPaginationPage"
+        [pageSize]="itemsPerPage"
+        [maxSize]="5"
+        [rotate]="true"
+        [boundaryLinks]="true"
+        (pageChange)="loadPage($event)"
+      ></ngb-pagination>
+    </div>
+  </div>
+</div>

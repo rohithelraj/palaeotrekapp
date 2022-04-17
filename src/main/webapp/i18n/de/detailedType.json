@@ -1,0 +1,10 @@
+{
+  "palaeotrekappApp": {
+    "DetailedType": {
+      "null": "",
+      "MAPS": "MAPS",
+      "TEMPERATURE": "TEMPERATURE",
+      "ADDITIONAL": "ADDITIONAL"
+    }
+  }
+}

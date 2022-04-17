@@ -1,0 +1,126 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      <h2 id="jhi-pdf-data-heading" data-cy="PdfDataCreateUpdateHeading" jhiTranslate="palaeotrekappApp.pdfData.home.createOrEditLabel">
+        Create or edit a Pdf Data
+      </h2>
+
+      <div>
+        <jhi-alert-error></jhi-alert-error>
+
+        <div class="row mb-3" [hidden]="editForm.get('id')!.value == null">
+          <label class="form-label" jhiTranslate="global.field.id" for="field_id">ID</label>
+          <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="palaeotrekappApp.pdfData.dnaType" for="field_dnaType">Dna Type</label>
+          <select class="form-control" name="dnaType" formControlName="dnaType" id="field_dnaType" data-cy="dnaType">
+            <option [ngValue]="null">{{ 'palaeotrekappApp.DnaType.null' | translate }}</option>
+            <option *ngFor="let dnaType of dnaTypeValues" [value]="dnaType">{{ 'palaeotrekappApp.DnaType.' + dnaType | translate }}</option>
+          </select>
+          <div *ngIf="editForm.get('dnaType')!.invalid && (editForm.get('dnaType')!.dirty || editForm.get('dnaType')!.touched)">
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('dnaType')?.errors?.required"
+              jhiTranslate="entity.validation.required"
+            >
+              This field is required.
+            </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="palaeotrekappApp.pdfData.detailedType" for="field_detailedType">Detailed Type</label>
+          <select class="form-control" name="detailedType" formControlName="detailedType" id="field_detailedType" data-cy="detailedType">
+            <option [ngValue]="null">{{ 'palaeotrekappApp.DetailedType.null' | translate }}</option>
+            <option *ngFor="let detailedType of detailedTypeValues" [value]="detailedType">
+              {{ 'palaeotrekappApp.DetailedType.' + detailedType | translate }}
+            </option>
+          </select>
+          <div
+            *ngIf="editForm.get('detailedType')!.invalid && (editForm.get('detailedType')!.dirty || editForm.get('detailedType')!.touched)"
+          >
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('detailedType')?.errors?.required"
+              jhiTranslate="entity.validation.required"
+            >
+              This field is required.
+            </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="palaeotrekappApp.pdfData.pdfId" for="field_pdfId">Pdf Id</label>
+          <input type="text" class="form-control" name="pdfId" id="field_pdfId" data-cy="pdfId" formControlName="pdfId" />
+          <div *ngIf="editForm.get('pdfId')!.invalid && (editForm.get('pdfId')!.dirty || editForm.get('pdfId')!.touched)">
+            <small class="form-text text-danger" *ngIf="editForm.get('pdfId')?.errors?.required" jhiTranslate="entity.validation.required">
+              This field is required.
+            </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="palaeotrekappApp.pdfData.dateOfCreation" for="field_dateOfCreation"
+            >Date Of Creation</label
+          >
+          <div class="input-group">
+            <input
+              id="field_dateOfCreation"
+              data-cy="dateOfCreation"
+              type="text"
+              class="form-control"
+              name="dateOfCreation"
+              ngbDatepicker
+              #dateOfCreationDp="ngbDatepicker"
+              formControlName="dateOfCreation"
+            />
+            <button type="button" class="btn btn-secondary" (click)="dateOfCreationDp.toggle()">
+              <fa-icon icon="calendar-alt"></fa-icon>
+            </button>
+          </div>
+          <div
+            *ngIf="
+              editForm.get('dateOfCreation')!.invalid && (editForm.get('dateOfCreation')!.dirty || editForm.get('dateOfCreation')!.touched)
+            "
+          >
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('dateOfCreation')?.errors?.required"
+              jhiTranslate="entity.validation.required"
+            >
+              This field is required.
+            </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="palaeotrekappApp.pdfData.userId" for="field_userId">User Id</label>
+          <input type="text" class="form-control" name="userId" id="field_userId" data-cy="userId" formControlName="userId" />
+          <div *ngIf="editForm.get('userId')!.invalid && (editForm.get('userId')!.dirty || editForm.get('userId')!.touched)">
+            <small class="form-text text-danger" *ngIf="editForm.get('userId')?.errors?.required" jhiTranslate="entity.validation.required">
+              This field is required.
+            </small>
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <button type="button" id="cancel-save" data-cy="entityCreateCancelButton" class="btn btn-secondary" (click)="previousState()">
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+        </button>
+
+        <button
+          type="submit"
+          id="save-entity"
+          data-cy="entityCreateSaveButton"
+          [disabled]="editForm.invalid || isSaving"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="save"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

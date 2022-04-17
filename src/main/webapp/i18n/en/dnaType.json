@@ -1,0 +1,11 @@
+{
+  "palaeotrekappApp": {
+    "DnaType": {
+      "null": "",
+      "MTDNA": "MTDNA",
+      "AUTOSOMAL": "AUTOSOMAL",
+      "YDNA": "YDNA",
+      "XDNA": "XDNA"
+    }
+  }
+}

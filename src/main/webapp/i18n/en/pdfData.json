@@ -1,0 +1,28 @@
+{
+  "palaeotrekappApp": {
+    "pdfData": {
+      "home": {
+        "title": "Pdf Data",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Create a new Pdf Data",
+        "createOrEditLabel": "Create or edit a Pdf Data",
+        "notFound": "No Pdf Data found"
+      },
+      "created": "A new Pdf Data is created with identifier {{ param }}",
+      "updated": "A Pdf Data is updated with identifier {{ param }}",
+      "deleted": "A Pdf Data is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Pdf Data {{ id }}?"
+      },
+      "detail": {
+        "title": "Pdf Data"
+      },
+      "id": "ID",
+      "dnaType": "Dna Type",
+      "detailedType": "Detailed Type",
+      "pdfId": "Pdf Id",
+      "dateOfCreation": "Date Of Creation",
+      "userId": "User Id"
+    }
+  }
+}

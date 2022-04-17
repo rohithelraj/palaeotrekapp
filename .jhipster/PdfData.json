@@ -1,0 +1,39 @@
+{
+  "changelogDate": "20220417154309",
+  "dto": "mapstruct",
+  "fields": [
+    {
+      "fieldName": "dnaType",
+      "fieldType": "DnaType",
+      "fieldValidateRules": ["required"],
+      "fieldValues": "MTDNA,AUTOSOMAL,YDNA,XDNA"
+    },
+    {
+      "fieldName": "detailedType",
+      "fieldType": "DetailedType",
+      "fieldValidateRules": ["required"],
+      "fieldValues": "MAPS,TEMPERATURE,ADDITIONAL"
+    },
+    {
+      "fieldName": "pdfId",
+      "fieldType": "String",
+      "fieldValidateRules": ["required", "unique"]
+    },
+    {
+      "fieldName": "dateOfCreation",
+      "fieldType": "LocalDate",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "userId",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    }
+  ],
+  "jpaMetamodelFiltering": false,
+  "name": "PdfData",
+  "pagination": "pagination",
+  "readOnly": false,
+  "relationships": [],
+  "service": "serviceClass"
+}

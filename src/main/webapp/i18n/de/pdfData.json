@@ -1,0 +1,28 @@
+{
+  "palaeotrekappApp": {
+    "pdfData": {
+      "home": {
+        "title": "Pdf Data",
+        "refreshListLabel": "Liste aktualisieren",
+        "createLabel": "Pdf Data erstellen",
+        "createOrEditLabel": "Pdf Data erstellen oder bearbeiten",
+        "notFound": "Keine Pdf Data gefunden"
+      },
+      "created": "Pdf Data erstellt mit ID {{ param }}",
+      "updated": "Pdf Data aktualisiert mit ID {{ param }}",
+      "deleted": "Pdf Data gelöscht mit ID {{ param }}",
+      "delete": {
+        "question": "Soll Pdf Data {{ id }} wirklich dauerhaft gelöscht werden?"
+      },
+      "detail": {
+        "title": "Pdf Data"
+      },
+      "id": "ID",
+      "dnaType": "Dna Type",
+      "detailedType": "Detailed Type",
+      "pdfId": "Pdf Id",
+      "dateOfCreation": "Date Of Creation",
+      "userId": "User Id"
+    }
+  }
+}
