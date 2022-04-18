@@ -34,6 +34,7 @@ import {AutosomalAdditionalComponent} from "./autosomal-additional/autosomal-add
 import {AutosomalTemperatureComponent} from "./autosomal-temperature/autosomal-temperature.component";
 import {AutosomaldnaComponent} from "./autosomaldna/autosomaldna.component";
 import {PdfViewerModule} from "ng2-pdf-viewer";
+import { PrivacyPolicyComponent } from './privacy-policy/privacy-policy.component';
 
 @NgModule({
   imports: [
@@ -56,7 +57,7 @@ import {PdfViewerModule} from "ng2-pdf-viewer";
     {provide: NgbDateAdapter, useClass: NgbDateDayjsAdapter},
     httpInterceptorProviders,
   ],
-  declarations: [MainComponent, NavbarComponent, ErrorComponent, PageRibbonComponent, ActiveMenuDirective, FooterComponent, AutosomaldnaComponent, YdnaComponent, MtdnaComponent, XdnaComponent, AutosomalFoutythousandbceComponent, AutosomalMapsComponent, AutosomalTemperatureComponent, AutosomalAdditionalComponent],
+  declarations: [MainComponent, NavbarComponent, ErrorComponent, PageRibbonComponent, ActiveMenuDirective, FooterComponent, AutosomaldnaComponent, YdnaComponent, MtdnaComponent, XdnaComponent, AutosomalFoutythousandbceComponent, AutosomalMapsComponent, AutosomalTemperatureComponent, AutosomalAdditionalComponent, PrivacyPolicyComponent],
   bootstrap: [MainComponent],
 })
 export class AppModule {

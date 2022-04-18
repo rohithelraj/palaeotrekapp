@@ -11,12 +11,14 @@ import {AutosomaldnaComponent} from "./autosomaldna/autosomaldna.component";
 import {MtdnaComponent} from "./mtdna/mtdna.component";
 import {XdnaComponent} from "./xdna/xdna.component";
 import {YdnaComponent} from "./ydna/ydna.component";
+import {PrivacyPolicyComponent} from "./privacy-policy/privacy-policy.component";
 
 @NgModule({
   imports: [
     RouterModule.forRoot(
       [
         { path: 'autosomal', component: AutosomaldnaComponent },
+        { path: 'privacy', component: PrivacyPolicyComponent },
         { path: 'mtdna', component: MtdnaComponent },
         { path: 'xdna', component: XdnaComponent },
         { path: 'ydna', component: YdnaComponent },

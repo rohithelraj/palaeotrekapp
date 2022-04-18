@@ -5,7 +5,9 @@
 
   <div class="col-md-9">
     <h1 class="display-4">PALAEOTREK</h1>
-    <div [ngSwitch]="account !== null" class="col-md-9 row"  *jhiHasAnyAuthority="'ROLE_ADMIN'">
+    <div *ngIf="account !== null; then thenBlock else elseBlock"></div>
+    <ng-template #thenBlock>
+    <div [ngSwitch]="account !== null"  class="col-md-9 row">
       <div class="card cardmargin">
         <img class="card-img-top autosomal"/>
         <div class="card-body">
@@ -41,5 +43,12 @@
         </div>
       </div>
     </div>
+    </ng-template>
+    <ng-template #elseBlock>
+      <div>
+        <jhi-login></jhi-login>
+      </div>
+    </ng-template>
+
   </div>
 </div>

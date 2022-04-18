@@ -3,6 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 
 import { IPdfData } from '../pdf-data.model';
 import { DataUtils } from 'app/core/util/data-util.service';
+import {PagesLoadedEvent} from "ngx-extended-pdf-viewer";
 
 @Component({
   selector: 'jhi-pdf-data-detail',
@@ -12,6 +13,7 @@ export class PdfDataDetailComponent implements OnInit {
   public src: Blob;
   pdfData: IPdfData | null = null;
 
+
   constructor(protected dataUtils: DataUtils, protected activatedRoute: ActivatedRoute) {
     let cc = "";
     if (this.pdfData?.pdf){
@@ -19,6 +21,7 @@ export class PdfDataDetailComponent implements OnInit {
     }
     this.src = this.retrieveUrl(cc, this.pdfData?.pdfContentType);
   }
+
   public usePreloadedFile(base64String: string, contentType: string | null | undefined): void {
     this.src = this.retrieveUrl(base64String, contentType);
   }
