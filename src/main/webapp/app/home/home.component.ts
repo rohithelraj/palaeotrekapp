@@ -13,7 +13,7 @@ import { Account } from 'app/core/auth/account.model';
 })
 export class HomeComponent implements OnInit, OnDestroy {
   account: Account | null = null;
-
+  loggedIn = false;
   private readonly destroy$ = new Subject<void>();
 
   constructor(private accountService: AccountService, private router: Router) {}
@@ -23,6 +23,12 @@ export class HomeComponent implements OnInit, OnDestroy {
       .getAuthenticationState()
       .pipe(takeUntil(this.destroy$))
       .subscribe(account => (this.account = account));
+    if(this.account?.activated){
+      this.loggedIn = true;
+    }
+    else{
+      this.loggedIn = false;
+    }
   }
 
   login(): void {

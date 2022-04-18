@@ -5,50 +5,44 @@
 
   <div class="col-md-9">
     <h1 class="display-4">PALAEOTREK</h1>
-    <div *ngIf="account !== null; then thenBlock else elseBlock"></div>
-    <ng-template #thenBlock>
-    <div [ngSwitch]="account !== null"  class="col-md-9 row">
-      <div class="card cardmargin">
-        <img class="card-img-top autosomal"/>
-        <div class="card-body">
-          <h5 class="card-title">Autosomal DNA Heritage</h5>
-          <p class="card-text">
-            Exploring the heritage and migration patterns involving the 21 pairs of chromosomes, from Chromosome 1 to 22.
-          </p>
-          <a  routerLink="/autosomal" class="btn btn-primary">Details</a>
+      <div [ngSwitch]="account !== null" class="col-md-9 row">
+        <div class="card cardmargin" *jhiHasAnyAuthority="'ROLE_AUTOSOMAL'">
+          <img class="card-img-top autosomal"/>
+          <div class="card-body">
+            <h5 class="card-title">Autosomal DNA Heritage</h5>
+            <p class="card-text">
+              Exploring the heritage and migration patterns involving the 21 pairs of chromosomes, from Chromosome 1 to 22.
+            </p>
+            <a  routerLink="/autosomal" class="btn btn-primary">Details</a>
+          </div>
+        </div>
+        <div class="card cardmargin" *jhiHasAnyAuthority="'ROLE_YDNA'">
+          <img class="card-img-top ydna"/>
+          <div class="card-body">
+            <h5 class="card-title">Y-Chromosomal Heritage</h5>
+            <p class="card-text">Exploring the heritage and migration patterns involving the Y Chromosome.</p>
+            <a  routerLink="/ydna" class="btn btn-primary" disabled="true">Coming Soon</a>
+          </div>
+        </div>
+        <div class="card cardmargin" *jhiHasAnyAuthority="'ROLE_MTDNA'">
+          <img class="card-img-top mtdna" />
+          <div class="card-body">
+            <h5 class="card-title">MT-DNA Heritage</h5>
+            <p class="card-text">Exploring the heritage and migratory patterns of the Mitochondrial DNA.</p>
+            <a  routerLink="/mtdna" class="btn btn-primary" disabled="true">Coming Soon</a>
+          </div>
+        </div>
+        <div class="card cardmargin" *jhiHasAnyAuthority="'ROLE_XDNA'">
+          <img class="card-img-top xdna"/>
+          <div class="card-body">
+            <h5 class="card-title">X-Chromosomal Heritage</h5>
+            <p class="card-text">Exploring the heritage and migration patterns involving the X Chromosome.</p>
+            <a  routerLink="/xdna" class="btn btn-primary" disabled="true">Coming Soon</a>
+          </div>
         </div>
       </div>
-      <div class="card cardmargin">
-        <img class="card-img-top ydna"/>
-        <div class="card-body">
-          <h5 class="card-title">Y-Chromosomal Heritage</h5>
-          <p class="card-text">Exploring the heritage and migration patterns involving the Y Chromosome.</p>
-          <a  routerLink="/ydna" class="btn btn-primary" disabled="true">Coming Soon</a>
-        </div>
-      </div>
-      <div class="card cardmargin">
-        <img class="card-img-top mtdna" />
-        <div class="card-body">
-          <h5 class="card-title">MT-DNA Heritage</h5>
-          <p class="card-text">Exploring the heritage and migratory patterns of the Mitochondrial DNA.</p>
-          <a  routerLink="/mtdna" class="btn btn-primary" disabled="true">Coming Soon</a>
-        </div>
-      </div>
-      <div class="card cardmargin">
-        <img class="card-img-top xdna"/>
-        <div class="card-body">
-          <h5 class="card-title">X-Chromosomal Heritage</h5>
-          <p class="card-text">Exploring the heritage and migration patterns involving the X Chromosome.</p>
-          <a  routerLink="/xdna" class="btn btn-primary" disabled="true">Coming Soon</a>
-        </div>
-      </div>
-    </div>
-    </ng-template>
-    <ng-template #elseBlock>
-      <div>
-        <jhi-login></jhi-login>
-      </div>
-    </ng-template>
+
+
 
   </div>
 </div>
