@@ -101,6 +101,19 @@ public class PdfDataService {
     }
 
     /**
+     * Get one pdfData by id.
+     *
+     * @param pdfId the formatted unique id of the Pdf following syntax <USER_ID>_<DNA_TYPE>_<DETAILED_TYPE>.
+     * @param userId the userID of the benutzer
+     * @return the entity.
+     */
+    @Transactional(readOnly = true)
+    public Optional<PdfDataDTO> findByPdfIdAndUserId(String pdfId, String userId) {
+        log.debug("Request to get PdfData with pdfId and userId : {}", pdfId,userId);
+        return pdfDataRepository.findByPdfIdAndUserId(pdfId,userId).map(pdfDataMapper::toDto);
+    }
+
+    /**
      * Delete the pdfData by id.
      *
      * @param id the id of the entity.

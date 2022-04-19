@@ -166,6 +166,20 @@ public class PdfDataResource {
     }
 
     /**
+     * {@code GET  /pdf-data-with-pdf-and-user-id/pdfId:/userId:} : get the "pdfId","userId" pdfData.
+     *
+     * @param pdfId the formatted unique id of the Pdf following syntax <USER_ID>_<DNA_TYPE>_<DETAILED_TYPE>.
+     * @param userId the userID of the benutzer
+     * @return the {@link ResponseEntity} with status {@code 200 (OK)} and with body the pdfDataDTO, or with status {@code 404 (Not Found)}.
+     */
+    @GetMapping("/pdf-data-with-pdf-and-user-id/{pdfId}/{userId}")
+    public ResponseEntity<PdfDataDTO> getPdfDatawithPdfIdAndUserId(@PathVariable String pdfId, @PathVariable String userId) {
+        log.debug("Request to get PdfData with pdfId and userId : {}", pdfId,userId);
+        Optional<PdfDataDTO> pdfDataDTO = pdfDataService.findByPdfIdAndUserId(pdfId,userId);
+        return ResponseUtil.wrapOrNotFound(pdfDataDTO);
+    }
+
+    /**
      * {@code DELETE  /pdf-data/:id} : delete the "id" pdfData.
      *
      * @param id the id of the pdfDataDTO to delete.
