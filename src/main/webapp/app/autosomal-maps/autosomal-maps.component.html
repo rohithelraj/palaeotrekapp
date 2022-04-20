@@ -4,4 +4,6 @@
   </button>
   <ngx-extended-pdf-viewer [height]="'50em'" [src]="src" [useBrowserLocale]="true"></ngx-extended-pdf-viewer>
 </div>
-
+<div *ngIf="pdfData == null">
+  <p>Please wait for a few days, until your results are ready..</p>
+</div>

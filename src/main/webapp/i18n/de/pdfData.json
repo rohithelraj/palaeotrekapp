@@ -24,6 +24,9 @@
       "dateOfCreation": "Date Of Creation",
       "userId": "User Id",
       "pdf": "Pdf"
+    },
+    "autosomal": {
+      "unvailable": "Bitte warten Sie paar Tagen, bis Ihren Ergebnis bereitgestellt wird."
     }
   }
 }

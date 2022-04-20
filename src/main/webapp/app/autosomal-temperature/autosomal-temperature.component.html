@@ -1,1 +1,9 @@
-<p>autosomal-temperature works!</p>
+<div *ngIf="pdfData != null && pdfData.pdf != null && pdfData.pdfContentType != null">
+  <button type="button" class="btn btn-primary position-relative pdfmargin" (click)="usePreloadedFile(pdfData.pdf, pdfData.pdfContentType)">
+    Update
+  </button>
+  <ngx-extended-pdf-viewer [height]="'50em'" [src]="src" [useBrowserLocale]="true"></ngx-extended-pdf-viewer>
+</div>
+<div *ngIf="pdfData == null">
+<p>Please wait for a few days, until your results are ready..</p>
+</div>

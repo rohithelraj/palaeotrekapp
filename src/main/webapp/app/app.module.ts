@@ -28,7 +28,6 @@ import {ErrorComponent} from './layouts/error/error.component';
 import {YdnaComponent} from "./ydna/ydna.component";
 import {XdnaComponent} from "./xdna/xdna.component";
 import {MtdnaComponent} from "./mtdna/mtdna.component";
-import {AutosomalFoutythousandbceComponent} from "./autosomal-foutythousandbce/autosomal-foutythousandbce.component";
 import {AutosomalMapsComponent} from "./autosomal-maps/autosomal-maps.component";
 import {AutosomalAdditionalComponent} from "./autosomal-additional/autosomal-additional.component";
 import {AutosomalTemperatureComponent} from "./autosomal-temperature/autosomal-temperature.component";
@@ -59,7 +58,7 @@ import {NgxExtendedPdfViewerModule} from "ngx-extended-pdf-viewer";
     {provide: NgbDateAdapter, useClass: NgbDateDayjsAdapter},
     httpInterceptorProviders,
   ],
-  declarations: [MainComponent, NavbarComponent, ErrorComponent, PageRibbonComponent, ActiveMenuDirective, FooterComponent, AutosomaldnaComponent, YdnaComponent, MtdnaComponent, XdnaComponent, AutosomalFoutythousandbceComponent, AutosomalMapsComponent, AutosomalTemperatureComponent, AutosomalAdditionalComponent, PrivacyPolicyComponent],
+  declarations: [MainComponent, NavbarComponent, ErrorComponent, PageRibbonComponent, ActiveMenuDirective, FooterComponent, AutosomaldnaComponent, YdnaComponent, MtdnaComponent, XdnaComponent, AutosomalMapsComponent, AutosomalTemperatureComponent, AutosomalAdditionalComponent, PrivacyPolicyComponent],
   bootstrap: [MainComponent],
 })
 export class AppModule {
