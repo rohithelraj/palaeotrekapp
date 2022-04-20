@@ -54,11 +54,11 @@ spring:
     username: admin@palaeotrek.com  #Replace this field with your Gmail username.
     password: Rodrigo@valencia1099           #Replace this field with your Gmail password/App password.
     protocol: smtp
-    tls: true
+    tls: false
     properties.mail.smtp:
       auth: true
       starttls.enable: true
-      ssl.trust: smtp.gmail.com
+      ssl.trust: mail.privateemail.com
   thymeleaf:
     cache: true
   sleuth:
@@ -126,7 +126,7 @@ jhipster:
         token-validity-in-seconds: 86400
         token-validity-in-seconds-for-remember-me: 2592000
   mail: # specific JHipster mail property, for standard properties see MailProperties
-    base-url: http://mail.privateemail.com # Modify according to your server's URL
+    base-url: https://www.palaeotrek.com # Modify according to your server's URL
   logging:
     use-json-format: false # By default, logs are not in Json format
     logstash: # Forward logs to logstash over a socket, used by LoggingConfiguration
