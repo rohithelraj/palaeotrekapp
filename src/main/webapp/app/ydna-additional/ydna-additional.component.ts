@@ -35,7 +35,7 @@ export class YdnaAdditionalComponent implements OnInit {
       if (account) {
         this.account = account;
         const id = this.account.id;
-        const pdfId = "1_Ydna_Additional";
+        const pdfId = id+"_Ydna_Additional";
         this.pdfDataService.findByPdfIdAndUserId(pdfId,id).subscribe({
           next: (res: HttpResponse<IPdfData>) => {
             this.pdfData = res.body;

@@ -35,7 +35,7 @@ export class MtdnaMapsComponent implements OnInit {
       if (account) {
         this.account = account;
         const id = this.account.id;
-        const pdfId = "1_Mtdna_Maps";
+        const pdfId = id+"_Mtdna_Maps";
         this.pdfDataService.findByPdfIdAndUserId(pdfId,id).subscribe({
           next: (res: HttpResponse<IPdfData>) => {
             this.pdfData = res.body;
