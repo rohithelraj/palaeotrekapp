@@ -35,6 +35,15 @@ import {AutosomaldnaComponent} from "./autosomaldna/autosomaldna.component";
 import {PdfViewerModule} from "ng2-pdf-viewer";
 import { PrivacyPolicyComponent } from './privacy-policy/privacy-policy.component';
 import {NgxExtendedPdfViewerModule} from "ngx-extended-pdf-viewer";
+import { XdnaMapsComponent } from './xdna-maps/xdna-maps.component';
+import { XdnaTemperatureComponent } from './xdna-temperature/xdna-temperature.component';
+import { XdnaAdditionalComponent } from './xdna-additional/xdna-additional.component';
+import { YdnaAdditionalComponent } from './ydna-additional/ydna-additional.component';
+import { YdnaTemperatureComponent } from './ydna-temperature/ydna-temperature.component';
+import { YdnaMapsComponent } from './ydna-maps/ydna-maps.component';
+import { MtdnaMapsComponent } from './mtdna-maps/mtdna-maps.component';
+import { MtdnaTemperatureComponent } from './mtdna-temperature/mtdna-temperature.component';
+import { MtdnaAdditionalComponent } from './mtdna-additional/mtdna-additional.component';
 
 @NgModule({
     imports: [
@@ -58,7 +67,7 @@ import {NgxExtendedPdfViewerModule} from "ngx-extended-pdf-viewer";
     {provide: NgbDateAdapter, useClass: NgbDateDayjsAdapter},
     httpInterceptorProviders,
   ],
-  declarations: [MainComponent, NavbarComponent, ErrorComponent, PageRibbonComponent, ActiveMenuDirective, FooterComponent, AutosomaldnaComponent, YdnaComponent, MtdnaComponent, XdnaComponent, AutosomalMapsComponent, AutosomalTemperatureComponent, AutosomalAdditionalComponent, PrivacyPolicyComponent],
+  declarations: [MainComponent, NavbarComponent, ErrorComponent, PageRibbonComponent, ActiveMenuDirective, FooterComponent, AutosomaldnaComponent, YdnaComponent, MtdnaComponent, XdnaComponent, AutosomalMapsComponent, AutosomalTemperatureComponent, AutosomalAdditionalComponent, PrivacyPolicyComponent, XdnaMapsComponent, XdnaTemperatureComponent, XdnaAdditionalComponent, YdnaAdditionalComponent, YdnaTemperatureComponent, YdnaMapsComponent, MtdnaMapsComponent, MtdnaTemperatureComponent, MtdnaAdditionalComponent],
   bootstrap: [MainComponent],
 })
 export class AppModule {
