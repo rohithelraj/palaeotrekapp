@@ -46,6 +46,12 @@ export class PdfDataService {
       .pipe(map((res: EntityResponseType) => this.convertDateFromServer(res)));
   }
 
+  findByPdfIdAndUserId(pdfId: string,userId: string): Observable<EntityResponseType> {
+    return this.http
+      .get<IPdfData>(`/api/pdf-data-with-pdf-and-user-id/${pdfId}/${userId}`, { observe: 'response' })
+      .pipe(map((res: EntityResponseType) => this.convertDateFromServer(res)));
+  }
+
   query(req?: any): Observable<EntityArrayResponseType> {
     const options = createRequestOption(req);
     return this.http

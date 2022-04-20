@@ -35,22 +35,24 @@ import {AutosomalTemperatureComponent} from "./autosomal-temperature/autosomal-t
 import {AutosomaldnaComponent} from "./autosomaldna/autosomaldna.component";
 import {PdfViewerModule} from "ng2-pdf-viewer";
 import { PrivacyPolicyComponent } from './privacy-policy/privacy-policy.component';
+import {NgxExtendedPdfViewerModule} from "ngx-extended-pdf-viewer";
 
 @NgModule({
-  imports: [
-    BrowserModule,
-    SharedModule,
-    HomeModule,
-    // jhipster-needle-angular-add-module JHipster will add new module here
-    AppRoutingModule,
+    imports: [
+        BrowserModule,
+        SharedModule,
+        HomeModule,
+        // jhipster-needle-angular-add-module JHipster will add new module here
+        AppRoutingModule,
 
-    PdfViewerModule,
-    // Set this to true to enable service worker (PWA)
-    ServiceWorkerModule.register('ngsw-worker.js', {enabled: false}),
-    HttpClientModule,
-    NgxWebstorageModule.forRoot({prefix: 'jhi', separator: '-', caseSensitive: true}),
-    TranslationModule,
-  ],
+        PdfViewerModule,
+        // Set this to true to enable service worker (PWA)
+        ServiceWorkerModule.register('ngsw-worker.js', {enabled: false}),
+        HttpClientModule,
+        NgxWebstorageModule.forRoot({prefix: 'jhi', separator: '-', caseSensitive: true}),
+        TranslationModule,
+        NgxExtendedPdfViewerModule,
+    ],
   providers: [
     Title,
     {provide: LOCALE_ID, useValue: 'en'},
