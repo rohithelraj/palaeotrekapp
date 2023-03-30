@@ -1,0 +1,130 @@
+<div>
+  <h2 id="page-heading" data-cy="HikeHeading">
+    <span jhiTranslate="palaeotrekappApp.hike.home.title">Hikes</span>
+
+    <div class="d-flex justify-content-end">
+      <button *jhiHasAnyAuthority="'ROLE_ADMIN'" class="btn btn-info me-2" (click)="loadPage()" [disabled]="isLoading">
+        <fa-icon icon="sync" [spin]="isLoading"></fa-icon>
+        <span jhiTranslate="palaeotrekappApp.hike.home.refreshListLabel">Refresh List</span>
+      </button>
+
+      <button
+        *jhiHasAnyAuthority="'ROLE_ADMIN'"
+        id="jh-create-entity"
+        data-cy="entityCreateButton"
+        class="btn btn-primary jh-create-entity create-hike"
+        [routerLink]="['/hike/new']"
+      >
+        <fa-icon icon="plus"></fa-icon>
+        <span jhiTranslate="palaeotrekappApp.hike.home.createLabel"> Create a new Hike </span>
+      </button>
+    </div>
+  </h2>
+
+  <jhi-alert-error></jhi-alert-error>
+
+  <jhi-alert></jhi-alert>
+
+  <div class="alert alert-warning" id="no-result" *ngIf="hikes?.length === 0">
+    <span jhiTranslate="palaeotrekappApp.hike.home.notFound">No hikes found</span>
+  </div>
+
+  <div class="table-responsive" id="entities" *ngIf="hikes && hikes.length > 0">
+    <table class="table table-striped" aria-describedby="page-heading">
+      <thead>
+        <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" (sortChange)="loadPage()">
+          <!--          <th scope="col" jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <fa-icon icon="sort"></fa-icon></th>-->
+          <th scope="col" jhiSortBy="hikeDate">
+            <span jhiTranslate="palaeotrekappApp.hike.hikeDate">Hike Date</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <!--          <th scope="col" jhiSortBy="komootMap">-->
+          <!--            <span jhiTranslate="palaeotrekappApp.hike.komootMap">Komoot Map</span> <fa-icon icon="sort"></fa-icon>-->
+          <!--          </th>-->
+          <th scope="col" jhiSortBy="description1">
+            <span jhiTranslate="palaeotrekappApp.hike.description1">Name</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <!--          <th scope="col" jhiSortBy="description2">
+            <span jhiTranslate="palaeotrekappApp.hike.description2">Description 2</span> <fa-icon icon="sort"></fa-icon>
+          </th>-->
+          <!--          <th scope="col" jhiSortBy="trainConnection">
+            <span jhiTranslate="palaeotrekappApp.hike.trainConnection">Train Connection</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="imageData">
+            <span jhiTranslate="palaeotrekappApp.hike.imageData">Image Data</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="imageBlob">
+            <span jhiTranslate="palaeotrekappApp.hike.imageBlob">Image Blob</span> <fa-icon icon="sort"></fa-icon>
+          </th>-->
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let hike of hikes; trackBy: trackId" data-cy="entityTable">
+          <!--          <td>-->
+          <!--            <a [routerLink]="['/hike', hike.id, 'view']">{{ hike.id }}</a>-->
+          <!--          </td>-->
+          <td>{{ hike.hikeDate | formatMediumDate }}</td>
+          <!--          <td>{{ hike.komootMap }}</td>-->
+          <td>{{ hike.description1 }}</td>
+          <!--          <td>{{ hike.description2 }}</td>-->
+          <!--          <td>{{ hike.trainConnection }}</td>
+          <td>{{ hike.imageData }}</td>-->
+          <!--          <td>
+            <a *ngIf="hike.imageBlob" (click)="openFile(hike.imageBlob, hike.imageBlobContentType)">
+              <img [src]="'data:' + hike.imageBlobContentType + ';base64,' + hike.imageBlob" style="max-height: 30px" alt="hike image" />
+            </a>
+            <span *ngIf="hike.imageBlob">{{ hike.imageBlobContentType }}, {{ byteSize(hike.imageBlob) }}</span>
+          </td>-->
+          <td class="text-end">
+            <div class="btn-group">
+              <button type="submit" [routerLink]="['/hike', hike.id, 'view']" class="btn btn-info btn-sm" data-cy="entityDetailsButton">
+                <fa-icon icon="eye"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+              </button>
+
+              <button
+                *jhiHasAnyAuthority="'ROLE_ADMIN'"
+                type="submit"
+                [routerLink]="['/hike', hike.id, 'edit']"
+                class="btn btn-primary btn-sm"
+                data-cy="entityEditButton"
+              >
+                <fa-icon icon="pencil-alt"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+              </button>
+
+              <button
+                *jhiHasAnyAuthority="'ROLE_ADMIN'"
+                type="submit"
+                (click)="delete(hike)"
+                class="btn btn-danger btn-sm"
+                data-cy="entityDeleteButton"
+              >
+                <fa-icon icon="times"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+              </button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div *ngIf="hikes && hikes.length > 0">
+    <div class="d-flex justify-content-center">
+      <jhi-item-count [params]="{ page: page, totalItems: totalItems, itemsPerPage: itemsPerPage }"></jhi-item-count>
+    </div>
+
+    <div class="d-flex justify-content-center">
+      <ngb-pagination
+        [collectionSize]="totalItems"
+        [(page)]="ngbPaginationPage"
+        [pageSize]="itemsPerPage"
+        [maxSize]="5"
+        [rotate]="true"
+        [boundaryLinks]="true"
+        (pageChange)="loadPage($event)"
+      ></ngb-pagination>
+    </div>
+  </div>
+</div>

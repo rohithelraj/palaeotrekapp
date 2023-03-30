@@ -1,0 +1,30 @@
+{
+  "palaeotrekappApp": {
+    "hike": {
+      "home": {
+        "title": "Hikes",
+        "refreshListLabel": "Liste aktualisieren",
+        "createLabel": "Hike erstellen",
+        "createOrEditLabel": "Hike erstellen oder bearbeiten",
+        "notFound": "Keine Hikes gefunden"
+      },
+      "created": "Hike erstellt mit ID {{ param }}",
+      "updated": "Hike aktualisiert mit ID {{ param }}",
+      "deleted": "Hike gelöscht mit ID {{ param }}",
+      "delete": {
+        "question": "Soll Hike {{ id }} wirklich dauerhaft gelöscht werden?"
+      },
+      "detail": {
+        "title": "Hike"
+      },
+      "id": "ID",
+      "hikeDate": "Hike Date",
+      "komootMap": "Komoot Map",
+      "description1": "Description 1",
+      "description2": "Description 2",
+      "trainConnection": "Train Connection",
+      "imageData": "Image Data",
+      "imageBlob": "Image Blob"
+    }
+  }
+}

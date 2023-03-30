@@ -1,0 +1,67 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <div *ngIf="hike">
+      <h2 data-cy="hikeDetailsHeading">{{ hike.description1 }}</h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <!--        <dt><span jhiTranslate="global.field.id">ID</span></dt>
+        <dd>
+          <span>{{ hike.id }}</span>
+        </dd>-->
+        <dt>
+          <!--<span jhiTranslate="palaeotrekappApp.hike.imageBlob">Image Blob</span>-->
+        </dt>
+        <dd>
+          <div *ngIf="hike.imageBlob">
+            <a (click)="openFile(hike.imageBlob, hike.imageBlobContentType)">
+              <img [src]="'data:' + hike.imageBlobContentType + ';base64,' + hike.imageBlob" style="max-width: 100%" alt="hike image" />
+            </a>
+            <!--            {{ hike.imageBlobContentType }}, {{ byteSize(hike.imageBlob) }}-->
+          </div>
+        </dd>
+        <dt><span jhiTranslate="palaeotrekappApp.hike.hikeDate">Hike Date</span></dt>
+        <dd>
+          <span>{{ hike.hikeDate | formatMediumDate }}</span>
+        </dd>
+        <dt>
+          <!--          <span jhiTranslate="palaeotrekappApp.hike.komootMap">Komoot Map</span>-->
+        </dt>
+        <dd>
+          <span><iframe src="{{ hike.komootMap }}" width="100%" height="700" frameborder="0" scrolling="no"></iframe></span>
+        </dd>
+        <!--<dt><span jhiTranslate="palaeotrekappApp.hike.description1">Description 1</span></dt>
+        <dd>
+          <span>{{ hike.description1 }}</span>
+        </dd>-->
+        <dt><img class="train" /></dt>
+        <dd>
+          <span>{{ hike.trainConnection }}</span>
+        </dd>
+        <dt>
+          <!--<span jhiTranslate="palaeotrekappApp.hike.description2">Description 2</span>-->
+        </dt>
+        <dd>
+          <span>{{ hike.description2 }}</span>
+        </dd>
+        <!--<dt><span jhiTranslate="palaeotrekappApp.hike.imageData">Image Data</span></dt>
+        <dd>
+          <span>{{ hike.imageData }}</span>
+        </dd>-->
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+      </button>
+
+      <button *jhiHasAnyAuthority="'ROLE_USER'" type="button" [routerLink]="['/hike', hike.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+      </button>
+    </div>
+  </div>
+</div>

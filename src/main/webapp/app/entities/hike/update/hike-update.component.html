@@ -1,0 +1,171 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      <h2 id="jhi-hike-heading" data-cy="HikeCreateUpdateHeading" jhiTranslate="palaeotrekappApp.hike.home.createOrEditLabel">
+        Create or edit a Hike
+      </h2>
+
+      <div>
+        <jhi-alert-error></jhi-alert-error>
+
+        <div class="row mb-3" [hidden]="editForm.get('id')!.value == null">
+          <label class="form-label" jhiTranslate="global.field.id" for="field_id">ID</label>
+          <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="palaeotrekappApp.hike.hikeDate" for="field_hikeDate">Hike Date</label>
+          <div class="input-group">
+            <input
+              id="field_hikeDate"
+              data-cy="hikeDate"
+              type="text"
+              class="form-control"
+              name="hikeDate"
+              ngbDatepicker
+              #hikeDateDp="ngbDatepicker"
+              formControlName="hikeDate"
+            />
+            <button type="button" class="btn btn-secondary" (click)="hikeDateDp.toggle()"><fa-icon icon="calendar-alt"></fa-icon></button>
+          </div>
+          <div *ngIf="editForm.get('hikeDate')!.invalid && (editForm.get('hikeDate')!.dirty || editForm.get('hikeDate')!.touched)">
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('hikeDate')?.errors?.required"
+              jhiTranslate="entity.validation.required"
+            >
+              This field is required.
+            </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="palaeotrekappApp.hike.komootMap" for="field_komootMap">Komoot Map</label>
+          <input type="text" class="form-control" name="komootMap" id="field_komootMap" data-cy="komootMap" formControlName="komootMap" />
+          <div *ngIf="editForm.get('komootMap')!.invalid && (editForm.get('komootMap')!.dirty || editForm.get('komootMap')!.touched)">
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('komootMap')?.errors?.required"
+              jhiTranslate="entity.validation.required"
+            >
+              This field is required.
+            </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="palaeotrekappApp.hike.description1" for="field_description1">Description 1</label>
+          <input
+            type="text"
+            class="form-control"
+            name="description1"
+            id="field_description1"
+            data-cy="description1"
+            formControlName="description1"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="palaeotrekappApp.hike.description2" for="field_description2">Description 2</label>
+          <input
+            type="text"
+            class="form-control"
+            name="description2"
+            id="field_description2"
+            data-cy="description2"
+            formControlName="description2"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="palaeotrekappApp.hike.trainConnection" for="field_trainConnection"
+            >Train Connection</label
+          >
+          <input
+            type="text"
+            class="form-control"
+            name="trainConnection"
+            id="field_trainConnection"
+            data-cy="trainConnection"
+            formControlName="trainConnection"
+          />
+          <div
+            *ngIf="
+              editForm.get('trainConnection')!.invalid &&
+              (editForm.get('trainConnection')!.dirty || editForm.get('trainConnection')!.touched)
+            "
+          >
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('trainConnection')?.errors?.required"
+              jhiTranslate="entity.validation.required"
+            >
+              This field is required.
+            </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="palaeotrekappApp.hike.imageData" for="field_imageData">Image Data</label>
+          <input type="text" class="form-control" name="imageData" id="field_imageData" data-cy="imageData" formControlName="imageData" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="palaeotrekappApp.hike.imageBlob" for="field_imageBlob">Image Blob</label>
+          <div>
+            <img
+              [src]="'data:' + editForm.get('imageBlobContentType')!.value + ';base64,' + editForm.get('imageBlob')!.value"
+              style="max-height: 100px"
+              *ngIf="editForm.get('imageBlob')!.value"
+              alt="hike image"
+            />
+            <div *ngIf="editForm.get('imageBlob')!.value" class="form-text text-danger clearfix">
+              <span class="pull-start"
+                >{{ editForm.get('imageBlobContentType')!.value }}, {{ byteSize(editForm.get('imageBlob')!.value) }}</span
+              >
+              <button
+                type="button"
+                (click)="clearInputImage('imageBlob', 'imageBlobContentType', 'file_imageBlob')"
+                class="btn btn-secondary btn-xs pull-end"
+              >
+                <fa-icon icon="times"></fa-icon>
+              </button>
+            </div>
+            <input
+              type="file"
+              id="file_imageBlob"
+              data-cy="imageBlob"
+              (change)="setFileData($event, 'imageBlob', true)"
+              accept="image/*"
+              jhiTranslate="entity.action.addimage"
+            />
+          </div>
+          <input type="hidden" class="form-control" name="imageBlob" id="field_imageBlob" data-cy="imageBlob" formControlName="imageBlob" />
+          <input
+            type="hidden"
+            class="form-control"
+            name="imageBlobContentType"
+            id="field_imageBlobContentType"
+            formControlName="imageBlobContentType"
+          />
+        </div>
+      </div>
+
+      <div>
+        <button type="button" id="cancel-save" data-cy="entityCreateCancelButton" class="btn btn-secondary" (click)="previousState()">
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+        </button>
+
+        <button
+          type="submit"
+          id="save-entity"
+          data-cy="entityCreateSaveButton"
+          [disabled]="editForm.invalid || isSaving"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="save"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>
